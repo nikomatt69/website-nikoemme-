@@ -1,0 +1,65 @@
+---
+const groups = [
+  {
+    title: "Languages",
+    items: ["TypeScript", "JavaScript", "Rust", "Python", "Bash"],
+  },
+  {
+    title: "Frontend",
+    items: ["Astro", "Next.js", "React", "Tailwind", "Framer Motion"],
+  },
+  {
+    title: "Backend & Edge",
+    items: ["Cloudflare Workers", "D1", "R2", "Hono", "Postgres"],
+  },
+  {
+    title: "AI & Tooling",
+    items: ["Claude API", "OpenAI", "MCP", "LSP", "tRPC", "Drizzle"],
+  },
+];
+---
+
+<section id="stack" class="py-32 border-y border-terminal-border/60 bg-surface-hover/30">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <div class="max-w-3xl mb-16 text-center mx-auto">
+      <div
+        class="inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-terminal-accent/10 text-[11px] font-mono font-bold text-terminal-accent mb-6 uppercase tracking-widest border border-terminal-accent/20"
+      >
+        // stack
+      </div>
+      <h2
+        class="text-4xl md:text-5xl font-extrabold tracking-tight mb-6 text-terminal-text leading-[1.1]"
+      >
+        The toolbox
+      </h2>
+      <p class="text-lg md:text-xl text-terminal-muted leading-relaxed font-medium">
+        I'm pragmatic about tools. These are the ones I keep reaching for.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {
+        groups.map((group) => (
+          <div class="rounded-3xl p-8 bg-terminal-panel border border-terminal-border/80 dark:border-white/5 shadow-soft hover:shadow-strong transition-all duration-500 hover:-translate-y-1 hover:border-terminal-accent/40">
+            <div class="flex items-center justify-between mb-5">
+              <h3 class="text-xl font-bold tracking-tight text-terminal-text">
+                {group.title}
+              </h3>
+              <span class="text-[11px] font-mono text-terminal-muted">
+                {group.items.length} items
+              </span>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              {group.items.map((item) => (
+                <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[13px] font-mono font-semibold bg-surface-hover border border-terminal-border/50 text-terminal-text hover:bg-surface-active hover:border-terminal-accent/40 transition-all">
+                  <span class="w-1.5 h-1.5 rounded-full bg-terminal-accent" />
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,166 @@
+---
+const links = [
+  {
+    label: "GitHub",
+    handle: "@nikomatt69",
+    href: "https://github.com/nikomatt69",
+    icon:
+      '<path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.92.58.11.79-.25.79-.56v-2.04c-3.2.7-3.87-1.37-3.87-1.37-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.69 1.24 3.34.95.1-.74.4-1.24.72-1.53-2.55-.29-5.24-1.27-5.24-5.66 0-1.25.45-2.27 1.18-3.07-.12-.29-.51-1.46.11-3.04 0 0 .96-.31 3.15 1.17.91-.25 1.89-.38 2.86-.38.97 0 1.95.13 2.86.38 2.18-1.48 3.14-1.17 3.14-1.17.62 1.58.23 2.75.11 3.04.74.8 1.18 1.82 1.18 3.07 0 4.4-2.69 5.36-5.25 5.65.41.36.78 1.06.78 2.13v3.16c0 .31.21.68.8.56C20.22 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/>',
+  },
+  {
+    label: "X / Twitter",
+    handle: "@nikomatt69",
+    href: "https://x.com/nikomatt69",
+    icon:
+      '<path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>',
+  },
+  {
+    label: "Email",
+    handle: "hi@nikoemme.dev",
+    href: "mailto:hi@nikoemme.dev",
+    icon:
+      '<path d="M2.25 6.75A2.25 2.25 0 0 1 4.5 4.5h15a2.25 2.25 0 0 1 2.25 2.25v10.5A2.25 2.25 0 0 1 19.5 19.5h-15a2.25 2.25 0 0 1-2.25-2.25V6.75ZM4.5 6l7.5 5.25L19.5 6"/>',
+  },
+];
+---
+
+<section id="contact" class="py-32 relative">
+  <div
+    class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-terminal-border to-transparent opacity-50"
+  >
+  </div>
+
+  <div class="container mx-auto px-4 flex flex-col items-center max-w-4xl">
+    <div class="max-w-2xl w-full text-center mb-12">
+      <div
+        class="inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-terminal-accent/10 text-[11px] font-mono font-bold text-terminal-accent mb-6 uppercase tracking-widest border border-terminal-accent/20"
+      >
+        // contact
+      </div>
+      <h2
+        class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 text-terminal-text leading-[1.1]"
+      >
+        Let's build something
+      </h2>
+      <p class="text-lg text-terminal-muted">
+        Open to interesting collabs, AI/agent work, and weird ideas. Just say hi.
+      </p>
+    </div>
+
+    <div class="w-full max-w-2xl space-y-3">
+      {
+        links.map((l) => (
+          <a
+            href={l.href}
+            target={l.href.startsWith("http") ? "_blank" : undefined}
+            rel={l.href.startsWith("http") ? "noreferrer" : undefined}
+            class="group flex items-center justify-between gap-4 p-5 rounded-2xl bg-terminal-panel border border-terminal-border/80 dark:border-white/5 hover:border-terminal-accent/40 hover:shadow-soft hover:-translate-y-0.5 transition-all duration-300"
+          >
+            <div class="flex items-center gap-4">
+              <div class="w-11 h-11 rounded-xl bg-surface-active border border-terminal-border/60 flex items-center justify-center text-terminal-text group-hover:text-terminal-accent group-hover:scale-105 transition-all">
+                <svg
+                  class="w-5 h-5"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  set:html={l.icon}
+                />
+              </div>
+              <div>
+                <div class="text-[13px] font-mono font-bold uppercase tracking-widest text-terminal-muted">
+                  {l.label}
+                </div>
+                <div class="text-base font-bold text-terminal-text">
+                  {l.handle}
+                </div>
+              </div>
+            </div>
+            <svg
+              class="w-5 h-5 text-terminal-muted group-hover:text-terminal-accent group-hover:translate-x-1 transition-all"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2.5"
+                d="M17 8l4 4m0 0l-4 4m4-4H3"
+              />
+            </svg>
+          </a>
+        ))
+      }
+    </div>
+
+    <div
+      class="mt-12 w-full max-w-2xl bg-terminal-panel border border-terminal-border/80 dark:border-white/10 rounded-2xl p-2 pl-6 shadow-strong flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 transition-all duration-300 hover:border-terminal-accent/30 hover:shadow-glow relative overflow-hidden group"
+    >
+      <code
+        class="font-mono text-[15px] text-terminal-text bg-transparent border-0 p-0 py-2 sm:py-0 overflow-x-auto whitespace-nowrap relative z-10"
+      >
+        <span class="text-terminal-accent mr-3 select-none">❯</span>echo "hi@nikoemme.dev" | mail -s "hello"
+      </code>
+      <button
+        id="copy-mail"
+        class="shrink-0 inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-surface-active hover:bg-terminal-text text-terminal-text hover:text-terminal-bg font-semibold text-sm transition-all duration-300 border border-terminal-border hover:border-transparent active:scale-95 shadow-sm relative z-10 w-full sm:w-auto"
+        type="button"
+        aria-live="polite"
+      >
+        <svg
+          id="copy-icon-idle-mail"
+          class="w-4 h-4"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          ><path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+          ></path></svg
+        >
+        <svg
+          id="copy-icon-success-mail"
+          class="w-4 h-4 hidden"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          ><path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2.5"
+            d="M5 13l4 4L19 7"></path></svg
+        >
+        <span id="copy-text-mail">Copy email</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<script>
+  const copyButton = document.getElementById("copy-mail");
+  const iconIdle = document.getElementById("copy-icon-idle-mail");
+  const iconSuccess = document.getElementById("copy-icon-success-mail");
+  const btnText = document.getElementById("copy-text-mail");
+  const value = "hi@nikoemme.dev";
+
+  copyButton?.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(value);
+      iconIdle?.classList.add("hidden");
+      iconSuccess?.classList.remove("hidden");
+      if (btnText) btnText.textContent = "Copied!";
+      copyButton.classList.add("!bg-green-500", "!text-white", "!border-green-500");
+      setTimeout(() => {
+        iconIdle?.classList.remove("hidden");
+        iconSuccess?.classList.add("hidden");
+        if (btnText) btnText.textContent = "Copy email";
+        copyButton.classList.remove(
+          "!bg-green-500",
+          "!text-white",
+          "!border-green-500",
+        );
+      }, 2000);
+    } catch {}
+  });
+</script>

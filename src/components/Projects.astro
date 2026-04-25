@@ -1,0 +1,151 @@
+---
+const projects = [
+  {
+    title: "nikcli",
+    tag: "Featured",
+    description:
+      "A provider-agnostic, terminal-native AI development agent with native LSP, MCP and remote execution. Open source under MIT.",
+    href: "https://github.com/nikomatt69/nikcli",
+    accent: true,
+    stack: ["TypeScript", "Astro", "Cloudflare", "AI"],
+    icon:
+      '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>',
+  },
+  {
+    title: "AI Agents Lab",
+    tag: "Open Source",
+    description:
+      "Experiments with autonomous coding agents, multi-step planning, and structured tool use across Claude, GPT and local models.",
+    href: "https://github.com/nikomatt69",
+    stack: ["TypeScript", "LLMs", "MCP"],
+    icon:
+      '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>',
+  },
+  {
+    title: "Terminal UI Kits",
+    tag: "Library",
+    description:
+      "Composable TUI components and theming primitives for blazing-fast keyboard-first apps. Pixel-precise in monospace.",
+    href: "https://github.com/nikomatt69",
+    stack: ["TypeScript", "Ink", "Blessed"],
+    icon:
+      '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h10M4 18h6"/>',
+  },
+  {
+    title: "Edge-first Web",
+    tag: "Infra",
+    description:
+      "Production websites and APIs deployed entirely on Cloudflare Workers and Pages. Cold-start free, globally fast.",
+    href: "https://github.com/nikomatt69",
+    stack: ["Astro", "Workers", "D1"],
+    icon:
+      '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12a9 9 0 1118 0 9 9 0 01-18 0zm9-9v18m-9-9h18"/>',
+  },
+  {
+    title: "Design Systems",
+    tag: "Craft",
+    description:
+      "Opinionated, terminal-inspired design language. The same one powering this very site — light/dark, accessible, calm.",
+    href: "#stack",
+    stack: ["Tailwind", "CSS Vars", "A11y"],
+    icon:
+      '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h6a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/>',
+  },
+  {
+    title: "Open Source",
+    tag: "Always",
+    description:
+      "I publish what I build. Bug reports, PRs and chaotic discussions welcome — the more eyes, the sharper the code.",
+    href: "https://github.com/nikomatt69",
+    stack: ["MIT", "GitHub", "Community"],
+    icon:
+      '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>',
+  },
+];
+---
+
+<section id="projects" class="py-32">
+  <div class="container mx-auto px-4">
+    <div class="max-w-3xl mb-20 text-center mx-auto">
+      <div
+        class="inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-terminal-accent/10 text-[11px] font-mono font-bold text-terminal-accent mb-6 uppercase tracking-widest border border-terminal-accent/20"
+      >
+        // projects
+      </div>
+      <h2
+        class="text-4xl md:text-5xl font-extrabold tracking-tight mb-6 text-terminal-text leading-[1.1]"
+      >
+        Things I've built
+      </h2>
+      <p class="text-lg md:text-xl text-terminal-muted leading-relaxed font-medium">
+        A handful of side quests, libraries and weekends-gone-wild that I'm proud
+        enough to keep public.
+      </p>
+    </div>
+
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-7xl mx-auto"
+    >
+      {
+        projects.map((p) => (
+          <a
+            href={p.href}
+            target={p.href.startsWith("http") ? "_blank" : undefined}
+            rel={p.href.startsWith("http") ? "noreferrer" : undefined}
+            class={`feature-card group relative p-8 rounded-3xl bg-terminal-panel border ${p.accent ? "border-terminal-accent/40" : "border-terminal-border/80 dark:border-white/5"} hover:border-terminal-accent/50 transition-all duration-500 shadow-soft hover:shadow-strong overflow-hidden z-10 hover:-translate-y-1 flex flex-col`}
+          >
+            <div class="absolute inset-0 bg-gradient-to-br from-terminal-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10 pointer-events-none" />
+
+            <div class="flex items-center justify-between mb-6">
+              <div class="w-12 h-12 rounded-2xl bg-surface-active border border-terminal-border/60 dark:border-white/5 shadow-inner flex items-center justify-center text-terminal-text group-hover:text-terminal-accent group-hover:scale-110 transition-all duration-500 ease-out">
+                <svg
+                  class="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  set:html={p.icon}
+                />
+              </div>
+              <span class="text-[10px] font-mono font-bold uppercase tracking-widest px-2 py-1 rounded-md bg-surface-hover border border-terminal-border/40 text-terminal-muted">
+                {p.tag}
+              </span>
+            </div>
+
+            <h3 class="text-2xl font-bold tracking-tight mb-3 text-terminal-text group-hover:text-terminal-accent transition-colors duration-300">
+              {p.title}
+            </h3>
+
+            <p class="text-terminal-muted text-[15px] leading-[1.65] font-medium flex-1">
+              {p.description}
+            </p>
+
+            <div class="flex flex-wrap gap-1.5 mt-6 pt-6 border-t border-terminal-border/40">
+              {p.stack.map((s) => (
+                <span class="text-[11px] font-mono font-semibold px-2 py-0.5 rounded-md bg-surface-hover text-terminal-muted border border-terminal-border/30">
+                  {s}
+                </span>
+              ))}
+            </div>
+
+            <div class="mt-6 inline-flex items-center gap-1.5 text-[13px] font-bold text-terminal-text group-hover:text-terminal-accent transition-colors">
+              <span>Read more</span>
+              <svg
+                class="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2.5"
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>

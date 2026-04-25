@@ -1,0 +1,35 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer
+  class="py-12 text-center text-sm font-medium text-terminal-muted border-t border-terminal-border/80 bg-terminal-panel shadow-inner"
+>
+  <div
+    class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6"
+  >
+    <div class="flex items-center gap-3">
+      <div
+        class="w-5 h-5 rounded-md bg-terminal-accent/10 flex items-center justify-center border border-terminal-accent/20"
+      >
+        <span class="text-terminal-accent text-[9px] font-black font-mono">~/</span>
+      </div>
+      <span>&copy; {year} Niko. Crafted in TS &amp; deployed on Cloudflare.</span>
+    </div>
+    <div class="flex gap-6">
+      <a
+        href="https://github.com/nikomatt69"
+        target="_blank"
+        rel="noreferrer"
+        class="hover:text-terminal-text transition-colors">GitHub</a
+      >
+      <a
+        href="https://x.com/nikomatt69"
+        target="_blank"
+        rel="noreferrer"
+        class="hover:text-terminal-text transition-colors">X</a
+      >
+      <a href="#contact" class="hover:text-terminal-text transition-colors">Contact</a>
+    </div>
+  </div>
+</footer>
