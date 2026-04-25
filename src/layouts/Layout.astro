@@ -1,0 +1,72 @@
+---
+import "../styles/global.css";
+import { ClientRouter } from "astro:transitions";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Niko — Builder & AI Engineer",
+  description = "Niko (nikomatt69) — full-stack builder, AI engineer and creator of nikcli. I ship fast, beautiful, terminal-native software.",
+} = Astro.props;
+
+const ogImage = "/og.png";
+const pathname = Astro.url.pathname;
+const siteUrl = "https://nikoemme.dev";
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Niko (nikomatt69)" />
+    <meta
+      name="keywords"
+      content="niko, nikomatt69, nikoemme, ai engineer, full stack developer, nikcli, typescript, open source, terminal"
+    />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={`${siteUrl}${pathname}`} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={`${siteUrl}${pathname}`} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={ogImage} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={`${siteUrl}${pathname}`} />
+
+    <ClientRouter />
+    <script is:inline>
+      const initTheme = () => {
+        const stored = localStorage.getItem("theme");
+        const prefersDark =
+          window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const theme = stored || (prefersDark ? "dark" : "light");
+        document.documentElement.setAttribute("data-theme", theme);
+      };
+      initTheme();
+      document.addEventListener("astro:after-swap", initTheme);
+    </script>
+  </head>
+  <body
+    class="min-h-screen bg-terminal-bg text-terminal-text flex flex-col font-sans antialiased selection:bg-terminal-accent/30 selection:text-terminal-text transition-colors duration-300"
+  >
+    <a
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 z-[100] px-5 py-2.5 bg-terminal-text text-terminal-bg font-semibold rounded-lg shadow-xl"
+      href="#main-content">Skip to content</a
+    >
+    <slot />
+  </body>
+</html>

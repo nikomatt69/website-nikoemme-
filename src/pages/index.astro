@@ -1,0 +1,29 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import Hero from "../components/Hero.astro";
+import About from "../components/About.astro";
+import Projects from "../components/Projects.astro";
+import Stack from "../components/Stack.astro";
+import Contact from "../components/Contact.astro";
+import Footer from "../components/Footer.astro";
+
+const seoDescription =
+  "Niko (nikomatt69) — AI engineer & full-stack builder. Creator of nikcli. I ship fast, beautiful, terminal-native software.";
+---
+
+<Layout title="Niko — Builder & AI Engineer" description={seoDescription}>
+  <Navbar />
+  <main
+    id="main-content"
+    tabindex="-1"
+    class="flex-1 w-full bg-terminal-bg relative isolate outline-none"
+  >
+    <Hero />
+    <About />
+    <Projects />
+    <Stack />
+    <Contact />
+  </main>
+  <Footer />
+</Layout>
