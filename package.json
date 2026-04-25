@@ -8,11 +8,13 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
-    "preview": "astro preview",
+    "preview": "wrangler pages dev ./dist --compatibility-date=2025-01-01",
     "astro": "astro",
-    "deploy": "wrangler pages deploy dist --project-name=nikoemme-website"
+    "deploy": "astro build && wrangler pages deploy dist --project-name=nikoemme-website",
+    "cf-typegen": "wrangler types"
   },
   "dependencies": {
+    "@astrojs/cloudflare": "^12.5.0",
     "@astrojs/sitemap": "^3.2.1",
     "@astrojs/tailwind": "^5.1.3",
     "@fontsource-variable/jetbrains-mono": "^5.1.1",
@@ -22,6 +24,7 @@
     "tailwindcss": "^3.4.1"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250101.0",
     "@types/node": "^22.10.0",
     "wrangler": "^4.61.1"
   }
