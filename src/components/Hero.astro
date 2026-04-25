@@ -180,42 +180,35 @@
 </section>
 
 <script>
-  const cmdText = "whoami";
-  const flagsText = " --json";
-
+  const cmd = "whoami";
+  const flags = " --json";
   const cmdEl = document.getElementById("typewriter-cmd");
   const flagsEl = document.getElementById("typewriter-flags");
   const outputEl = document.getElementById("output");
-
-  let i = 0;
-  let j = 0;
-  const prefersReduced =
-    window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  function typeWriter() {
-    if (i < cmdText.length && cmdEl) {
-      cmdEl.textContent = (cmdEl.textContent || "") + cmdText.charAt(i);
-      i++;
-      setTimeout(typeWriter, 60);
-    } else if (j < flagsText.length && flagsEl) {
-      flagsEl.textContent = (flagsEl.textContent || "") + flagsText.charAt(j);
-      j++;
-      setTimeout(typeWriter, 40);
-    } else if (outputEl) {
-      setTimeout(() => outputEl.classList.remove("hidden"), 400);
-    }
-  }
-
-  if (cmdEl) cmdEl.textContent = "";
-  if (flagsEl) flagsEl.textContent = "";
-
-  if (cmdEl && flagsEl) {
-    if (prefersReduced) {
-      cmdEl.textContent = cmdText;
-      flagsEl.textContent = flagsText;
-      outputEl?.classList.remove("hidden");
-    } else {
-      setTimeout(typeWriter, 800);
-    }
+  if (!cmdEl || !flagsEl) {
+    /* skip */
+  } else if (
+    window.matchMedia?.("(prefers-reduced-motion: reduce)").matches
+  ) {
+    cmdEl.textContent = cmd;
+    flagsEl.textContent = flags;
+    outputEl?.classList.remove("hidden");
+  } else {
+    cmdEl.textContent = "";
+    flagsEl.textContent = "";
+    let i = 0;
+    let j = 0;
+    const tick = () => {
+      if (i < cmd.length) {
+        cmdEl.textContent += cmd[i++];
+        setTimeout(tick, 60);
+      } else if (j < flags.length) {
+        flagsEl.textContent += flags[j++];
+        setTimeout(tick, 40);
+      } else {
+        setTimeout(() => outputEl?.classList.remove("hidden"), 300);
+      }
+    };
+    setTimeout(tick, 700);
   }
 </script>

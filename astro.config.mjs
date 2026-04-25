@@ -1,14 +1,25 @@
 import { defineConfig } from "astro/config";
-import cloudflare from "@astrojs/cloudflare";
-import mdx from "@astrojs/mdx";
+import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
-  output: "server",
-  adapter: cloudflare({
-    imageService: "compile",
-  }),
-  integrations: [tailwind(), mdx()],
   site: "https://nikoemme.dev",
+  output: "static",
+  integrations: [tailwind(), sitemap()],
+  compressHTML: true,
+  build: {
+    inlineStylesheets: "auto",
+    assets: "_astro",
+  },
+  prefetch: {
+    prefetchAll: false,
+    defaultStrategy: "hover",
+  },
+  vite: {
+    build: {
+      cssMinify: "esbuild",
+      cssCodeSplit: false,
+    },
+  },
 });

@@ -147,62 +147,68 @@ const navItems = [
 </nav>
 
 <script>
-  const setupThemeToggle = () => {
-    const root = document.documentElement;
-    const toggles = [
-      document.getElementById("theme-toggle"),
-      document.getElementById("theme-toggle-mobile"),
-    ];
-    const stored = localStorage.getItem("theme");
-    const prefersDark =
-      window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const current = root.getAttribute("data-theme");
-    const initial = current || stored || (prefersDark ? "dark" : "light");
+  const root = document.documentElement;
+  const stored = localStorage.getItem("theme");
+  const prefersDark = window.matchMedia?.(
+    "(prefers-color-scheme: dark)",
+  ).matches;
+  const initialTheme =
+    root.getAttribute("data-theme") ||
+    stored ||
+    (prefersDark ? "dark" : "light");
+  if (!root.getAttribute("data-theme"))
+    root.setAttribute("data-theme", initialTheme);
 
-    if (!current) root.setAttribute("data-theme", initial);
-
-    toggles.forEach((toggle) => {
-      if (!toggle) return;
-      toggle.setAttribute("aria-pressed", initial === "dark" ? "true" : "false");
-
-      toggle.addEventListener("click", () => {
-        const next =
-          root.getAttribute("data-theme") === "dark" ? "light" : "dark";
-        root.setAttribute("data-theme", next);
-        localStorage.setItem("theme", next);
-
-        toggles.forEach((t) => {
-          if (!t) return;
-          t.setAttribute("aria-pressed", next === "dark" ? "true" : "false");
-        });
-      });
-    });
+  const updateThemeColor = (theme: string) => {
+    const meta = document.querySelector<HTMLMetaElement>(
+      'meta[name="theme-color"]:not([media])',
+    );
+    if (meta) meta.content = theme === "dark" ? "#09090b" : "#fafafa";
   };
+  updateThemeColor(initialTheme);
 
-  const setupMobileMenu = () => {
-    const btn = document.getElementById("mobile-menu-btn");
-    const menu = document.getElementById("mobile-menu");
-    let isOpen = false;
-
-    const newBtn = btn?.cloneNode(true) as HTMLElement | undefined;
-    if (btn && newBtn && btn.parentNode) {
-      btn.parentNode.replaceChild(newBtn, btn);
+  document.addEventListener("click", (e) => {
+    const target = e.target as HTMLElement | null;
+    const toggle = target?.closest<HTMLElement>(
+      "#theme-toggle, #theme-toggle-mobile",
+    );
+    if (toggle) {
+      const next =
+        root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+      root.setAttribute("data-theme", next);
+      localStorage.setItem("theme", next);
+      updateThemeColor(next);
+      document
+        .querySelectorAll("#theme-toggle, #theme-toggle-mobile")
+        .forEach((t) =>
+          t.setAttribute("aria-pressed", next === "dark" ? "true" : "false"),
+        );
+      return;
     }
 
-    newBtn?.addEventListener("click", () => {
-      isOpen = !isOpen;
-      if (isOpen) {
-        menu?.classList.remove("hidden");
-        newBtn.innerHTML = `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>`;
-        document.body.style.overflow = "hidden";
-      } else {
-        menu?.classList.add("hidden");
-        newBtn.innerHTML = `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>`;
-        document.body.style.overflow = "";
-      }
-    });
-  };
+    const menuBtn = target?.closest<HTMLElement>("#mobile-menu-btn");
+    if (menuBtn) {
+      const menu = document.getElementById("mobile-menu");
+      if (!menu) return;
+      const isHidden = menu.classList.toggle("hidden");
+      menuBtn.innerHTML = isHidden
+        ? `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>`
+        : `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>`;
+      document.body.style.overflow = isHidden ? "" : "hidden";
+      menuBtn.setAttribute("aria-expanded", String(!isHidden));
+      return;
+    }
 
-  setupThemeToggle();
-  setupMobileMenu();
+    const link = target?.closest<HTMLAnchorElement>(
+      '#mobile-menu a[href^="#"]',
+    );
+    if (link) {
+      const menu = document.getElementById("mobile-menu");
+      const btn = document.getElementById("mobile-menu-btn");
+      menu?.classList.add("hidden");
+      document.body.style.overflow = "";
+      if (btn)
+        btn.innerHTML = `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>`;
+    }
+  });
 </script>

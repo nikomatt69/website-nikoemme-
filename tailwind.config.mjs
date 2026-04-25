@@ -4,8 +4,20 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Space Grotesk", "sans-serif"],
-        mono: ["JetBrains Mono", "monospace"],
+        sans: [
+          "Space Grotesk Variable",
+          "Space Grotesk",
+          "system-ui",
+          "sans-serif",
+        ],
+        mono: [
+          "JetBrains Mono Variable",
+          "JetBrains Mono",
+          "ui-monospace",
+          "SFMono-Regular",
+          "Menlo",
+          "monospace",
+        ],
       },
       colors: {
         terminal: {
